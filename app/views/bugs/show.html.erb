@@ -1,0 +1,59 @@
+<h1>Bug Details</h1>
+
+<table>
+  <tr>
+    <th>Title :</th>
+    <td><%= @bug.title %></td>
+  </tr>
+  <tr>
+    <th>Bug Type :</th>
+    <td><%= @bug.bug_type %></td>
+  </tr>
+  <tr>
+    <th>Status of bug :</th>
+    <td><%= @bug.status %></td>
+  </tr>
+  <tr>
+    <th>Bug belong to project :</th>
+    <td><%= @bug.project.name %></td>
+  </tr>
+  <tr>
+    <th>Created by(QA) :</th>
+    <td><%= @bug.user.name %></td>
+  </tr>
+
+  <tr>
+  <th>Assign to:</th>
+  <td>
+    <% if @bug.developer %>
+      <%= @bug.developer.name %>
+    <% else %>
+       Belong to other developer
+    <% end %>
+  </td>
+</tr>
+    <th>Discription</th>
+    <td><%= @bug.description %></td>
+  </tr>
+  <tr>
+    <th>Deadline</th>
+    <td><%= @bug.deadline %></td>
+  </tr>
+  <tr>
+    <th>Screen Shot</th>
+    <td>
+      <% if @bug.screenshot.present? %>
+        <%= image_tag @bug.screenshot.url, width: 150, height: 150 %>
+      <% else %>
+        <p>No screenshot available</p>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<div>
+  <%= link_to 'Back to Bugs', project_bugs_path(@project), class: 'btn btn-secondary mt-3' %>
+</div>
+
+
+

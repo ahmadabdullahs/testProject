@@ -1,0 +1,14 @@
+<h1><i>Edit BUG</i></h1>
+<%= form_for [@project, @bug] do |f| %>
+  
+  <%= "Title" %><br>
+  <%= f.text_field :title, placeholder:""%><br>
+  <%= f.label :status %><br>
+  <%= f.select :status, options_for_select(["New", "started", "resolved"]) %><br>
+  
+  <%= f.hidden_field :user_id, value: current_user.id %> <br>
+  <%= f.submit %>
+
+<% end %>
+
+<%= link_to 'Back', :back, class: 'btn btn-secondary mt-3' %>

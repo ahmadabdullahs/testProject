@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BugTrackingSystem</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+      font-family: Georgia, serif;
+      background-color: #ffffe0;
+      margin: 0;
+      padding: 0;
+    }
+     h1 {
+      color: #808080;
+      font-size: 45px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      color: #808080;
+      font-size: 20px;
+    }
+
+    td {
+      color: #808080;
+      font-size: 20px;
+      
+    }
+
+    th {
+      color: #808080;
+      font-size: 20px;
+      
+    }
+
+    div {
+      font-size: 19px;
+      text-align: center;
+    }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="user_nav" style="display: flex; justify-content: centre">
+      <% if user_signed_in? %>
+       <div class="user-info">
+         <p class="signed-in">Signed in as <%= current_user.email%>.</p>
+         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'sign-out-link' %>
+       </div>
+      <% else %>
+       <div>
+         <h1>WELLCOME</h1>
+         <p>BUG TRACKING APPLICATION</p>
+       </div>
+      <% end %>
+    </div>
+
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-info">
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+

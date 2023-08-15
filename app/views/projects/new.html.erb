@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <h1 class="text-center mb-4">Add New Project</h1>
+
+      <%= form_for @project do |form| %>
+        <div class="form-group">
+          <%= form.label :name, "Project Name" %>
+          <%= form.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+          <% if @project.errors[:name].any? %>
+            <p class="text-danger"><%= @project.errors[:name].first %></p>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="project_developer_ids">Select Developers:</label>
+          <%= form.collection_select :developer_ids, User.where(user_type: "developer"), :id, :name, {}, { multiple: true, class: 'form-control' } %>
+        </div>
+
+        <div class="form-group">
+          <label for="project_qa_ids">Select QA Testers:</label>
+          <%= form.collection_select :qa_ids, User.where(user_type: "QA"), :id, :name, {}, { multiple: true, class: 'form-control' } %>
+        </div>
+        <%= form.hidden_field :manager_id, value: current_user.id %><br>
+
+        <%= form.submit "Create Project", class: 'btn btn-primary btn-block' %>
+      <% end %>
+
+      <div class="text-left mt-3"> 
+        <%= link_to 'Back to Projects', projects_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
+

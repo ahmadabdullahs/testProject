@@ -1,0 +1,36 @@
+<div class="login-container">
+  <h2>Log in</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <!-- Render error messages at the top -->
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class: "label" %>
+      <%= f.email_field :email, class: "input", autofocus: true, autocomplete: "email" %>
+      <% if resource.errors[:email].empty? && params[:commit] && params[:user].present? && params[:user][:email].blank? %>
+        <p class="text-danger">Email can't be blank</p>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, class: "label" %>
+      <%= f.password_field :password, class: "input", autocomplete: "current-password" %>
+      <% if resource.errors[:password].empty? && params[:commit] && params[:user].present? && params[:user][:password].blank? %>
+        <p class="text-danger">Password can't be blank</p>
+      <% end %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="remember-me">
+        <%= f.check_box :remember_me, class: "checkbox" %>
+        <%= f.label :remember_me, class: "checkbox-label" %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,13 @@
+<h1>Add New User</h1>
+<%= form_with model: @user, url: users_path, method: :post do |form| %>
+  <%= form.text_field :name, placeholder: "Enter name" %><br>
+  <%= form.label :email, class: "form-label" %>
+  <%= form.email_field :email, class: "form-input" %><br>
+  <%= form.label :user_type, class: "form-label" %>
+  <%= form.select :user_type, ["Manager", "Developer", "QA"], {}, class: "form-input" %><br>
+  <%= form.submit %>
+<% end %>
+
+<div class="container mt-4">
+  <%= link_to 'Back to Users', users_path, class: 'btn btn-secondary mt-3' %>
+</div>

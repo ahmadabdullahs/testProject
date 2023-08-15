@@ -1,0 +1,100 @@
+<% if flash[:notice] %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+  <div class="bug-form-container">
+  <h1 class="bug-form-title"><i>Add New Bug</i></h1>
+  <%= form_with url: project_bugs_path(@project), method: :post, class: "bug-form" do |f| %>
+
+    <div class="form-group">
+      <%= f.label :title, class: "form-label" %><br>
+      <%= f.text_field :title, class: "form-input", placeholder: "Enter title" %><br>
+      <% if @bug.errors[:title].any? %>
+        <p class="text-danger"><%= @bug.errors[:title].join(", ") %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bug_type, class: "form-label" %><br>
+      <%= f.select :bug_type, options_for_select(["BUG", "FEATURE"]), class: "form-input", id: "bug_bug_type" %><br>
+      <% if @bug.errors[:bug_type].any? %>
+        <p class="text-danger"><%= @bug.errors[:bug_type].join(", ") %></p>
+      <% end %> 
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, class: "form-label" %><br>
+      <%= f.select :status, options_for_select(["New", "started", "resolved"]), class: "form-input", id: "status-select" %>
+      <br>
+      <% if @bug.errors[:status].any? %>
+         <p class="text-danger"><%= @bug.errors[:status].join(", ") %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :screenshot, class: "form-label" %><br>
+      <%= image_tag(@bug.screenshot_url) if @bug.screenshot? %>
+      <%= f.file_field :screenshot, class: "form-input", accept: ".png, .gif" %>
+      <%= f.hidden_field :screenshot_cache %>
+      <% if @bug.errors[:screenshot].any? %>
+        <p class="text-danger"><%= @bug.errors[:screenshot].join(", ") %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :deadline, class: "form-label" %><br>
+      <%= f.datetime_field :deadline, class: "form-input", min: Time.now.strftime('%Y-%m-%dT%H:%M') %><br>
+      <% if @bug.errors[:deadline].any? %>
+        <p class="text-danger"><%= @bug.errors[:deadline].join(", ") %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, class: "form-label" %><br>
+      <%= f.text_area :description, rows: 4, class: "form-input" %><br>
+      <% if @bug.errors[:description].any? %>
+        <p class="text-danger"><%= @bug.errors[:description].join(", ") %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :developer_id, class: "form-label" %><br>
+      <%= f.collection_select :developer_id, @project.developers, :id, :name, prompt: "Select a developer", class: "form-input" %>
+      <% if @bug.errors[:developer_id].any? %>
+        <p class="text-danger"><%= @bug.errors[:developer_id].join(", ") %></p>
+      <% end %>
+    </div>
+
+    <%= f.hidden_field :user_id, value: current_user.id %><br>
+
+    <%= f.submit "Create Bug", class: "btn btn-primary btn-block" %>
+  <% end %>
+</div>
+<div><%= link_to 'Back', :back, class: 'btn btn-secondary mt-3' %></div>
+
+<%= javascript_include_tag 'new', 'data-turbolinks-track': 'reload' %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  const bugTypeDropdown = document.getElementById("bug_bug_type");
+  const statusDropdown = document.getElementById("status-select");
+
+  bugTypeDropdown.addEventListener("change", function() {
+    const selectedBugType = bugTypeDropdown.value;
+    const statusOptions = statusDropdown.options;
+
+    statusOptions.length = 0; // Clear existing options
+
+    if (selectedBugType === "BUG") {
+      statusDropdown.append(new Option("New", "New"));
+      statusDropdown.append(new Option("started", "started"));
+      statusDropdown.append(new Option("resolved", "resolved"));
+    } else if (selectedBugType === "FEATURE") {
+      statusDropdown.append(new Option("New", "New"));
+      statusDropdown.append(new Option("started", "started"));
+      statusDropdown.append(new Option("complete", "complete"));
+    }
+  });
+});
+</script>

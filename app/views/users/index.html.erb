@@ -1,0 +1,29 @@
+<% if current_user.qa? %>
+  <h1>Detail of QA</h1>
+<% end %>
+
+<% if current_user.developer? %>
+  <h1>Detail of Developer</h1>
+<% end %>  
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if current_user %>
+    <tr>
+     <td><%= link_to current_user.name, user_path(current_user) %></td>
+     <td><%= current_user.user_type %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="container mt-4">
+  <%= link_to 'Back to Home', root_path, class: 'btn btn-primary mt-3' %>
+</div>

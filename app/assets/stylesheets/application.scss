@@ -1,0 +1,172 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+/* app/assets/stylesheets/application.css */
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 80px;
+  border: 1px solid #ccc;
+  border-radius: 70px;
+  background-color: #f9f9f9;
+}
+
+.login-form .field {
+  margin-bottom: 50px;
+}
+
+.login-form .label {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.login-form .input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.login-form .remember-me {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.login-form .checkbox {
+  margin-right: 10px;
+}
+
+.login-form .checkbox-label {
+  font-size: 14px;
+}
+
+.login-form .actions {
+  text-align: center;
+}
+
+.login-form .btn {
+  padding: 10px 150px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.login-form .btn:hover {
+  background-color: #0056b3;
+}
+
+/* app/assets/stylesheets/application.css */
+.signup-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 70px;
+  background-color: #f9f9f9;
+}
+
+.signup-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-form .form-group {
+  margin-bottom: 20px;
+}
+
+.signup-form .form-label {
+  font-weight: bold;
+}
+
+.signup-form .form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: px;
+}
+
+.signup-form .password-minimum {
+  font-size: 12px;
+  color: #999;
+}
+
+.signup-form .form-actions {
+  text-align: center;
+}
+
+.signup-form .btn {
+  padding: 10px 150px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.signup-form .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Add this CSS in your app/assets/stylesheets/application.css or application.scss file */
+
+/* Styling for the signed-in message */
+.user-info {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.signed-in {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling for the sign-out link */
+.sign-out-link {
+  color: #f00; /* Red color for sign-out link */
+}
+
+/* Styling for the user actions */
+.user-actions {
+  margin-top: 10px;
+}
+
+.register-link,
+.sign-in-link {
+  color: #007bff; /* Blue color for register and sign-in links */
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.register-link:hover,
+.sign-in-link:hover {
+  text-decoration: underline;
+}
+
+#user_nav {
+  display: flex;
+  justify-content: center;
+}

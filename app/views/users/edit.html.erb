@@ -1,0 +1,11 @@
+<h2>Edit User</h2>
+<%= form_for @user do |form| %>
+  <%= form.text_field :name, placeholder: "Enter name" %><br>
+  <%= form.text_field :email, placeholder: "Enter email" %><br>
+  <%= form.select :user_type, ['Manager', 'Developer', 'QA'], { prompt: 'Select user type' }, class: 'form-control' %><br>
+  <%= form.submit "Submit" %>
+<% end %>
+
+<div class="container mt-4">
+  <%= link_to 'Back to Users', users_path, class: 'btn btn-secondary mt-3' %>
+</div>
